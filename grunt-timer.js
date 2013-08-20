@@ -20,7 +20,7 @@ exports = module.exports = (function () {
 
         hooker.hook(grunt.log, "header", function () {
             grunt.log.writeln("a");
-            if (!task || task === grunt.task.current.nameArgs) {
+            if (task && task === grunt.task.current.nameArgs) {
                 return;
             }
             task = grunt.task.current.nameArgs;
