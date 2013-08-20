@@ -1,7 +1,7 @@
 {
     "name": "grunt-timer",
     "author": "Lee Crossley <leee@hotmail.co.uk> (http://ilee.co.uk/)",
-    "description": "Time the execution of each of your grunt tasks automatically, calculates a total execution time and output to the console.",
+    "description": "Time the execution of each of your grunt tasks automatically, calculates a total execution time and outputs to the console.",
     "homepage": "http://ilee.co.uk"
     "version": "0.0.1",
     "main": "grunt-timer.js",
