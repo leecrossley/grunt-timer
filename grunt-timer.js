@@ -1,4 +1,5 @@
-var duration = require("duration");
+var duration = require("duration"),
+    colour = require("bash-color");
 
 exports = module.exports = (function () {
     var timer = {}, grunt, hooker, last, task;
@@ -9,7 +10,8 @@ exports = module.exports = (function () {
         last = new Date();
 
         var logCurrent = function () {
-            grunt.log.writeln("Task '" + task + "' took " + new duration(last).milliseconds + "ms");
+            var text = "Task '" + task + "' took " + new duration(last).milliseconds + "ms";
+            grunt.log.writeln(colour.purple(text));
         };
 
         hooker.hook(grunt.log, "header", function () {

@@ -3,7 +3,7 @@
   "author": "Lee Crossley <leee@hotmail.co.uk> (http://ilee.co.uk/)",
   "description": "Times the duration of each of your grunt tasks automatically and outputs the execution time in milliseconds to the console after each task.",
   "homepage": "http://ilee.co.uk",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "grunt-timer.min.js",
   "keywords": [
     "grunt",
@@ -31,12 +31,12 @@
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-shell": "~0.3.1",
-    "grunt-cli": "~0.1.9"
+    "grunt-cli": "~0.1.9",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-uglify": "~0.2.2"
   },
   "dependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.6.3",
-    "grunt-contrib-uglify": "~0.2.2",
-    "duration": "~0.1.4"
+    "duration": "~0.1.4",
+    "bash-color": "0.0.3"
   }
 }
