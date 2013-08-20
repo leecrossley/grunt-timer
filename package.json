@@ -4,7 +4,7 @@
   "description": "Time the execution of each of your grunt tasks automatically, calculates a total execution time and outputs to the console.",
   "homepage": "http://ilee.co.uk",
   "version": "0.0.1",
-  "main": "grunt-timer.js",
+  "main": "grunt-timer.min.js",
   "keywords": [
     "grunt",
     "plugin",
