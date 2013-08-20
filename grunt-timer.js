@@ -10,7 +10,7 @@ exports = module.exports = (function () {
 
     timer.init = function (_grunt) {
         grunt = _grunt;
-        hooker = _grunt.util.hooker;
+        hooker = grunt.util.hooker;
         start = new Date();
         last = start;
 
@@ -18,19 +18,19 @@ exports = module.exports = (function () {
             gruntLog(task + " " + new Date() - last, task + " timer");
         };
 
-        hooker.hook(grunt.log, "timer", function () {
+        hooker.hook(grunt.log, "header", function () {
+            grunt.log.writeln("a");
             if (!task || task === grunt.task.current.nameArgs) {
                 return;
             }
-            logCurrent();
             task = grunt.task.current.nameArgs;
+            logCurrent();
             last = new Date();
         });
 
         process.on("exit", function () {
-            hooker.unhook(grunt.log, "timer");
-            // catch the last task
             logCurrent();
+            hooker.unhook(grunt.log, "header");
         });
     };
 

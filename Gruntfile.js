@@ -32,10 +32,10 @@ module.exports = function (grunt) {
             }
         }
     });
-    grunt.task.registerTask("testms", "tests a task that lasts the designated number of ms", function (ms) {
+    grunt.task.registerTask("run", "runs a task that lasts the designated number of ms", function (ms) {
         var done = this.async();
         setTimeout(function() {
-            grunt.log.writeln("Test " + ms + "ms ran");
+            grunt.log.writeln( ms + "ms task ran");
             done();
         }, parseInt(ms, 10));
     });
@@ -43,5 +43,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.loadNpmTasks("grunt-contrib-uglify");
     grunt.registerTask("min", ["jshint", "uglify"]);
-    grunt.registerTask("test", ["testms:100", "testms:500", "testms:1000"]);
+    grunt.registerTask("test", ["run:100", "run:500", "run:1000"]);
 };
