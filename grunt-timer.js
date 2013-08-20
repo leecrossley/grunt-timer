@@ -15,7 +15,7 @@ exports = module.exports = (function () {
         last = start;
 
         var logCurrent = function () {
-            gruntLog(task + " " + new Date() - last], task + " timer");
+            gruntLog(task + " " + new Date() - last, task + " timer");
         };
 
         hooker.hook(grunt.log, "timer", function () {
@@ -32,7 +32,7 @@ exports = module.exports = (function () {
             // catch the last task
             logCurrent();
         });
-    }
+    };
 
     return timer;
 })();
