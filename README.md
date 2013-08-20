@@ -1,4 +1,3 @@
-grunt-timer
-===========
+# grunt-timer
 
-Time the execution of each of your grunt tasks automatically
+grunt-timer.js times the execution of each of your grunt tasks automatically, calculates a total execution time and output to the console.

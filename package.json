@@ -1,0 +1,37 @@
+{
+    "name": "grunt-timer",
+    "author": "Lee Crossley <leee@hotmail.co.uk> (http://ilee.co.uk/)",
+    "description": "Time the execution of each of your grunt tasks automatically, calculates a total execution time and output to the console.",
+    "homepage": "http://ilee.co.uk"
+    "version": "0.0.1",
+    "main": "grunt-timer.js",
+    "keywords": [
+        "grunt",
+        "plugin",
+        "timer",
+        "stopwatch",
+        "elapse",
+        "watch",
+        "clock",
+        "execution"
+    ],
+    "contributors": [
+        {
+            "name": "Lee Crossley",
+            "email": "leee@hotmail.co.uk"
+        }
+    ],
+    "main": "grunt-timer.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/leecrossley/grunt-timer"
+    },
+    "engines": {
+        "node": ">= 0.8.x"
+    },
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-shell": "~0.3.1",
+        "grunt-cli": "~0.1.9"
+    }
+}
