@@ -32,7 +32,7 @@ exports = module.exports = (function () {
             if (task === grunt.task.current.nameArgs) {
                 return;
             }
-            if (!isParentMultiTask(task, grunt.task.current.nameArgs)) {
+            if (grunt.task.current.target) {
                 logCurrent();
             }
             task = grunt.task.current.nameArgs;
