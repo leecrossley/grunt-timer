@@ -7,7 +7,7 @@
 ### Install grunt-timer
 
 ```
-npm install grunt-timer // --save
+npm install grunt-timer ## --save-dev
 ```
 
 ### Upgrade your Gruntfile.js
