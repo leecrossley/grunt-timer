@@ -1,6 +1,6 @@
 # grunt-timer [![Dependency Status](https://david-dm.org/leecrossley/grunt-timer.png)](https://david-dm.org/leecrossley/grunt-timer) [![devDependency Status](https://david-dm.org/leecrossley/grunt-timer/dev-status.png)](https://david-dm.org/leecrossley/grunt-timer#info=devDependencies)
 
-**grunt-timer.js times the duration of each of your grunt tasks automatically and outputs the execution time in milliseconds to the console after each task.**
+**grunt-timer.js times the duration of each of your grunt tasks automatically and outputs the execution time in milliseconds to the console after each task. It also logs the total time for all logged tasks at the end.**
 
 ## Getting started
 
