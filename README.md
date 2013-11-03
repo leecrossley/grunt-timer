@@ -30,9 +30,9 @@ module.exports = function (grunt) {
 Running "run:500" (run) task
 500ms task ran
 Task 'run:500' took 502ms
+All tasks took 502ms
 ```
 
-## Issues
+## Notes
 
-- The last task duration is output after the "Done, without errors".
-- Tasks that wrap multi-tasks are currently output (shouldn't be, or if they are, should be a summary of all the multitasks).
+- The last task duration is output after the "Done, without errors". This is due to the way the hooking for the task name change works.
