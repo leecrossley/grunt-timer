@@ -24,12 +24,10 @@ exports = module.exports = (function () {
         grunt = _grunt;
         hooker = grunt.util.hooker;
         last = new Date();
+        task = "initialisation";
         total = 0;
 
         hooker.hook(grunt.log, "header", function () {
-            if (!task) {
-                task = grunt.task.current.nameArgs;
-            }
             if (task === grunt.task.current.nameArgs) {
                 return;
             }
