@@ -10,8 +10,10 @@ exports = module.exports = (function () {
         last = new Date();
 
         var logCurrent = function () {
-            var text = "Task '" + task + "' took " + new duration(last).milliseconds + "ms";
-            grunt.log.writeln(colour.purple(text));
+            var dur = new duration(last).milliseconds;
+            if (dur > 2) {
+                grunt.log.writeln(colour.purple("Task '" + task + "' took " + dur + "ms"));
+            }
         };
 
         hooker.hook(grunt.log, "header", function () {
