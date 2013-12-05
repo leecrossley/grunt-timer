@@ -36,3 +36,7 @@ All tasks took 502ms
 ## Notes
 
 - The last task duration is output after the "Done, without errors". This is due to the way the hooking for the task name change works.
+
+## License
+
+[MIT License](http://ilee.mit-license.org)
