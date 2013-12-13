@@ -33,6 +33,31 @@ Task 'run:500' took 502ms
 All tasks took 502ms
 ```
 
+## Options
+
+To use any option, pass an object parameter to your initialize function like so:
+
+```
+module.exports = function (grunt) {
+    timer.init(grunt, {deferLogs: true, friendlyTime: true});
+
+```
+
+### deferLogs
+
+If you'd prefer to see a summary of all your task timings at the end of the grunt process, enable this option.
+
+This is useful for the case where you have many grunt tasks, or they generate a lot of output while they are running, 
+and it might be tedious to scroll back through the console to find all the timing messages.
+
+### friendlyTime
+
+Enable this if you'd prefer to see the durations reported in a friendly hours/minutes/seconds format, instead of ms.
+
+```
+Task 'jshint:all' took 3 seconds 
+```
+
 ## Notes
 
 - The last task duration is output after the "Done, without errors". This is due to the way the hooking for the task name change works.
