@@ -2,17 +2,17 @@ var duration = require("duration"),
     colour = require("bash-color");
 
 exports = module.exports = (function () {
-    var timer = {}, grunt, hooker, last, task, total = 0;
-    var deferLogs = false;
-    var friendlyTime = false;
-    var deferredMessages = [];
+    "use strict";
+    var timer = {}, grunt, hooker, last, task,
+        total = 0,
+        deferLogs = false,
+        friendlyTime = false,
+        deferredMessages = [];
 
-    function getDisplayTime(s) {
-
+    var getDisplayTime = function (s) {
         if (!friendlyTime) {
             return s + "ms";
         }
-
         if (s < 1000) {
             return "<1 second";
         }
@@ -24,17 +24,15 @@ exports = module.exports = (function () {
         var mins = s % 60;
         var hrs = (s - mins) / 60;
 
-        return (hrs ? hrs + (hrs > 1 ? ' hours ' : ' hour ') : '') +
-                (mins ? mins + (mins > 1 ? ' minutes ' : ' minute ') : '') +
-                secs + (secs > 1 ? ' seconds ' : ' second ') ;
-    }
+        return (hrs ? hrs + (hrs > 1 ? " hours " : " hour ") : "") +
+                (mins ? mins + (mins > 1 ? " minutes " : " minute ") : "") +
+                secs + (secs > 1 ? " seconds " : " second ");
+    };
 
     var logCurrent = function () {
         var dur = new duration(last).milliseconds;
         if (dur > 2) {
-
             var logMsg = "Task '" + task + "' took " + getDisplayTime(dur);
-
             if (deferLogs) {
                 deferredMessages.push(logMsg);
             } else {
