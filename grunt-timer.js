@@ -6,6 +6,7 @@ exports = module.exports = (function () {
     var timer = {}, grunt, hooker, last, task,
         total = 0,
         deferLogs = false,
+        totalOnly = false,
         friendlyTime = false,
         deferredMessages = [];
 
@@ -25,18 +26,20 @@ exports = module.exports = (function () {
         var hrs = (s - mins) / 60;
 
         return (hrs ? hrs + (hrs > 1 ? " hours " : " hour ") : "") +
-                (mins ? mins + (mins > 1 ? " minutes " : " minute ") : "") +
-                secs + (secs > 1 ? " seconds " : " second ");
+            (mins ? mins + (mins > 1 ? " minutes " : " minute ") : "") +
+            secs + (secs > 1 ? " seconds " : " second ");
     };
 
     var logCurrent = function () {
         var dur = new duration(last).milliseconds;
         if (dur > 2) {
             var logMsg = "Task '" + task + "' took " + getDisplayTime(dur);
-            if (deferLogs) {
-                deferredMessages.push(logMsg);
-            } else {
-                grunt.log.writeln(colour.purple(logMsg));
+            if(!totalOnly){
+                if (deferLogs) {
+                    deferredMessages.push(logMsg);
+                } else {
+                    grunt.log.writeln(colour.purple(logMsg));
+                }
             }
             addToTotal(dur);
         }
@@ -58,6 +61,7 @@ exports = module.exports = (function () {
 
         deferLogs = !!options.deferLogs;
         friendlyTime = !!options.friendlyTime;
+        totalOnly    = !!options.totalOnly;
 
         hooker.hook(grunt.log, "header", function () {
             if (!task) {
