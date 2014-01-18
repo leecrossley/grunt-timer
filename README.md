@@ -58,6 +58,16 @@ Enable this if you'd prefer to see the durations reported in a friendly hours/mi
 Task 'jshint:all' took 3 seconds 
 ```
 
+### totalOnly
+
+Enable this if you'd prefer to only see the time all tasks took to complete.
+
+This is useful for having many small, insignificant tasks that would generate considerable output even with deferLogs.
+
+```
+All tasks took 502ms
+```
+
 ## Notes
 
 - The last task duration is output after the "Done, without errors". This is due to the way the hooking for the task name change works.
