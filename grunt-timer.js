@@ -1,9 +1,10 @@
 var duration = require("duration"),
-    colour = require("bash-color");
+    colour = require("bash-color"),
+    hooker = require("hooker");
 
 exports = module.exports = (function () {
     "use strict";
-    var timer = {}, grunt, hooker, last, task,
+    var timer = {}, grunt, last, task,
         total = 0,
         deferLogs = false,
         totalOnly = false,
@@ -55,7 +56,6 @@ exports = module.exports = (function () {
 
     timer.init = function (_grunt, options) {
         grunt = _grunt;
-        hooker = grunt.util.hooker;
         total = 0;
         options = options || {};
 
