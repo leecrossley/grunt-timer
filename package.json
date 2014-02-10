@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "duration": "~0.1.x",
-    "bash-color": "0.0.x"
+    "bash-color": "0.0.x",
+    "hooker": "~0.2.3"
   }
 }
