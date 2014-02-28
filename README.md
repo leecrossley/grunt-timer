@@ -35,11 +35,11 @@ All tasks took 502ms
 
 ## Options
 
-To use any option, pass an object parameter to your initialize function like so:
+To use any option, pass an object parameter to your initialise function like so:
 
 ```
 module.exports = function (grunt) {
-    timer.init(grunt, {deferLogs: true, friendlyTime: true});
+    timer.init(grunt, {deferLogs: true, friendlyTime: true, color: "blue"});
 
 ```
 
@@ -67,6 +67,10 @@ This is useful for having many small, insignificant tasks that would generate co
 ```
 All tasks took 502ms
 ```
+
+### color
+
+If supplied, will override default purple for console output.
 
 ## Notes
 

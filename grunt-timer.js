@@ -63,9 +63,9 @@ exports = module.exports = (function () {
 
         deferLogs = !!options.deferLogs;
         friendlyTime = !!options.friendlyTime;
-        totalOnly    = !!options.totalOnly;
+        totalOnly = !!options.totalOnly;
 
-        options.color = options.color || 'purple';
+        options.color = options.color || "purple";
 
         hooker.hook(grunt.log, "header", function () {
             if (!task) {

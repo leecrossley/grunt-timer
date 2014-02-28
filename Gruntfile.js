@@ -1,6 +1,6 @@
 var timer = require("./grunt-timer.js");
 module.exports = function (grunt) {
-    timer.init(grunt);
+    timer.init(grunt, {deferLogs: true, friendlyTime: true, color: "yellow"});
     grunt.initConfig({
         pkg: grunt.file.readJSON("package.json"),
         jshint: {
