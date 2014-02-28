@@ -1,5 +1,5 @@
 var duration = require("duration"),
-    colour = require("bash-color"),
+    color = require("bash-color"),
     hooker = require("hooker");
 
 exports = module.exports = (function () {
@@ -9,7 +9,8 @@ exports = module.exports = (function () {
         deferLogs = false,
         totalOnly = false,
         friendlyTime = false,
-        deferredMessages = [];
+        deferredMessages = [],
+        options = {};
 
     var getDisplayTime = function (s) {
         if (!friendlyTime) {
@@ -39,7 +40,7 @@ exports = module.exports = (function () {
                 if (deferLogs) {
                     deferredMessages.push(logMsg);
                 } else {
-                    grunt.log.writeln(colour.purple(logMsg));
+                    grunt.log.writeln(color[options.color](logMsg));
                 }
             }
             addToTotal(dur);
@@ -47,21 +48,24 @@ exports = module.exports = (function () {
     };
 
     var logTotal = function () {
-        grunt.log.writeln(colour.purple("All tasks took " + getDisplayTime(total), true));
+        grunt.log.writeln(color[options.color]("All tasks took " + getDisplayTime(total), true));
     };
 
     var addToTotal = function (ms) {
         total = total + ms;
     };
 
-    timer.init = function (_grunt, options) {
+    timer.init = function (_grunt, _options) {
         grunt = _grunt;
         total = 0;
-        options = options || {};
+
+        options = _options || {};
 
         deferLogs = !!options.deferLogs;
         friendlyTime = !!options.friendlyTime;
         totalOnly    = !!options.totalOnly;
+
+        options.color = options.color || 'purple';
 
         hooker.hook(grunt.log, "header", function () {
             if (!task) {
@@ -81,7 +85,7 @@ exports = module.exports = (function () {
             if (deferLogs) {
                 for (var i = 0; i < deferredMessages.length; i++) {
                     var thisLog = deferredMessages[i];
-                    grunt.log.writeln(colour.purple(thisLog));
+                    grunt.log.writeln(color[options.color](thisLog));
                 }
             }
             logTotal();
