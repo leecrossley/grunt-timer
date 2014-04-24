@@ -32,7 +32,7 @@ exports = module.exports = (function () {
             secs + (secs > 1 ? " seconds " : " second ");
     };
 
-    var logCurrent = function () {
+    var logCurrent = function (isLast) {
         var dur = new duration(last).milliseconds;
         if (dur > 2) {
             var logMsg = "Task '" + task + "' took " + getDisplayTime(dur);
@@ -44,11 +44,14 @@ exports = module.exports = (function () {
                 }
             }
             addToTotal(dur);
+            if (isLast) {
+                return color[options.color](logMsg);
+            }
         }
     };
 
-    var logTotal = function () {
-        grunt.log.writeln(color[options.color]("All tasks took " + getDisplayTime(total), true));
+    var getTotal = function () {
+        return color[options.color]("All tasks took " + getDisplayTime(total), true);
     };
 
     var addToTotal = function (ms) {
@@ -81,14 +84,18 @@ exports = module.exports = (function () {
         });
 
         process.on("exit", function () {
-            logCurrent();
+            var finalLog = "";
             if (deferLogs) {
+                logCurrent();
                 for (var i = 0; i < deferredMessages.length; i++) {
                     var thisLog = deferredMessages[i];
-                    grunt.log.writeln(color[options.color](thisLog));
+                    finalLog += color[options.color](thisLog) + "\n";
                 }
+            } else {
+                finalLog += logCurrent(true) + "\n";
             }
-            logTotal();
+            finalLog += getTotal();
+            throw finalLog;
             hooker.unhook(grunt.log, "header");
         });
     };
