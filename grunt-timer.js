@@ -96,7 +96,6 @@ exports = module.exports = (function () {
             }
             finalLog += getTotal();
             throw finalLog;
-            hooker.unhook(grunt.log, "header");
         });
     };
 
