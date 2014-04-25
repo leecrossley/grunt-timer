@@ -12,6 +12,44 @@ exports = module.exports = (function () {
         deferredMessages = [],
         options = {};
 
+    var write = process.stdout.write.bind(process.stdout);
+
+    var writeLn = function (msg) {
+        write(msg + "\n");
+    };
+
+    var logCurrent = function () {
+        var dur = new duration(last).milliseconds;
+        if (dur > 2) {
+            var logMsg = "Task '" + task + "' took " + getDisplayTime(dur);
+            if (!totalOnly) {
+                if (deferLogs) {
+                    deferredMessages.push(logMsg);
+                } else {
+                    writeLn(color[options.color](logMsg));
+                }
+            }
+            addToTotal(dur);
+        }
+    };
+
+    var logTotal = function () {
+        var msg = "All tasks took " + getDisplayTime(total);
+        writeLn(color[options.color](msg, true));
+    };
+
+    var logDeferred = function () {
+        var msg;
+        for (var i = 0; i < deferredMessages.length; i++) {
+            msg = deferredMessages[i];
+            writeLn(color[options.color](msg));
+        }
+    };
+
+    var addToTotal = function (ms) {
+        total = total + ms;
+    };
+
     var getDisplayTime = function (s) {
         if (!friendlyTime) {
             return s + "ms";
@@ -32,41 +70,15 @@ exports = module.exports = (function () {
             secs + (secs > 1 ? " seconds " : " second ");
     };
 
-    var logCurrent = function (isLast) {
-        var dur = new duration(last).milliseconds;
-        if (dur > 2) {
-            var logMsg = "Task '" + task + "' took " + getDisplayTime(dur);
-            if(!totalOnly){
-                if (deferLogs) {
-                    deferredMessages.push(logMsg);
-                } else {
-                    grunt.log.writeln(color[options.color](logMsg));
-                }
-            }
-            addToTotal(dur);
-            if (isLast) {
-                return color[options.color](logMsg);
-            }
-        }
-    };
-
-    var getTotal = function () {
-        return color[options.color]("All tasks took " + getDisplayTime(total), true);
-    };
-
-    var addToTotal = function (ms) {
-        total = total + ms;
-    };
-
     timer.init = function (_grunt, _options) {
         grunt = _grunt;
         total = 0;
 
         options = _options || {};
 
-        deferLogs = !!options.deferLogs;
-        friendlyTime = !!options.friendlyTime;
-        totalOnly = !!options.totalOnly;
+        deferLogs = !! options.deferLogs;
+        friendlyTime = !! options.friendlyTime;
+        totalOnly = !! options.totalOnly;
 
         options.color = options.color || "purple";
 
@@ -84,18 +96,12 @@ exports = module.exports = (function () {
         });
 
         process.on("exit", function () {
-            var finalLog = "";
+            logCurrent();
             if (deferLogs) {
-                logCurrent();
-                for (var i = 0; i < deferredMessages.length; i++) {
-                    var thisLog = deferredMessages[i];
-                    finalLog += color[options.color](thisLog) + "\n";
-                }
-            } else {
-                finalLog += logCurrent(true) + "\n";
+                logDeferred();
             }
-            finalLog += getTotal();
-            throw finalLog;
+            logTotal();
+            hooker.unhook(grunt.log, "header");
         });
     };
 
