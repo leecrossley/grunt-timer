@@ -18,7 +18,6 @@ module.exports = function (grunt) {
             done();
         }, parseInt(ms, 10));
     });
-    grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.registerTask("test", ["run:100", "run:500", "run:1000"]);
 };
