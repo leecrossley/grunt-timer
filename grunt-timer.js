@@ -14,6 +14,11 @@ exports = module.exports = (function () {
 
     var write = process.stdout.write.bind(process.stdout);
 
+    var useColor = function (chosenColor) {
+        writeLn = function (msg, intensity) {
+            write(color[chosenColor](msg, intensity) + "\n");
+        };
+    };
     var writeLn = function (msg) {
         write(msg + "\n");
     };
@@ -26,7 +31,7 @@ exports = module.exports = (function () {
                 if (deferLogs) {
                     deferredMessages.push(logMsg);
                 } else {
-                    writeLn(color[options.color](logMsg));
+                    writeLn(logMsg);
                 }
             }
             addToTotal(dur);
@@ -35,14 +40,14 @@ exports = module.exports = (function () {
 
     var logTotal = function () {
         var msg = "All tasks took " + getDisplayTime(total);
-        writeLn(color[options.color](msg, true));
+        writeLn(msg, true);
     };
 
     var logDeferred = function () {
         var msg;
         for (var i = 0; i < deferredMessages.length; i++) {
             msg = deferredMessages[i];
-            writeLn(color[options.color](msg));
+            writeLn(msg);
         }
     };
 
@@ -81,6 +86,9 @@ exports = module.exports = (function () {
         totalOnly = !! options.totalOnly;
 
         options.color = options.color || "purple";
+        if (grunt.option('color') !== false) {
+            useColor(options.color);
+        }
 
         hooker.hook(grunt.log, "header", function () {
             if (!task) {
