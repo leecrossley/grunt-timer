@@ -47,7 +47,7 @@ module.exports = function (grunt) {
 
 If you'd prefer to see a summary of all your task timings at the end of the grunt process, enable this option.
 
-This is useful for the case where you have many grunt tasks, or they generate a lot of output while they are running, 
+This is useful for the case where you have many grunt tasks, or they generate a lot of output while they are running,
 and it might be tedious to scroll back through the console to find all the timing messages.
 
 ### friendlyTime
@@ -55,7 +55,7 @@ and it might be tedious to scroll back through the console to find all the timin
 Enable this if you'd prefer to see the durations reported in a friendly hours/minutes/seconds format, instead of ms.
 
 ```
-Task 'jshint:all' took 3 seconds 
+Task 'jshint:all' took 3 seconds
 ```
 
 ### totalOnly
@@ -71,6 +71,8 @@ All tasks took 502ms
 ### color
 
 If supplied, will override default purple for console output.
+
+No color will be output if the grunt `--no-color` option is specified.
 
 ## Notes
 

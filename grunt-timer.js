@@ -14,13 +14,14 @@ exports = module.exports = (function () {
 
     var write = process.stdout.write.bind(process.stdout);
 
+    var writeLn = function (msg) {
+        write(msg + "\n");
+    };
+
     var useColor = function (chosenColor) {
         writeLn = function (msg, intensity) {
             write(color[chosenColor](msg, intensity) + "\n");
         };
-    };
-    var writeLn = function (msg) {
-        write(msg + "\n");
     };
 
     var logCurrent = function () {
@@ -86,7 +87,7 @@ exports = module.exports = (function () {
         totalOnly = !! options.totalOnly;
 
         options.color = options.color || "purple";
-        if (grunt.option('color') !== false) {
+        if (grunt.option("color") !== false) {
             useColor(options.color);
         }
 
