@@ -1,5 +1,6 @@
 var duration = require("duration"),
     color = require("bash-color"),
+    λ = require("functional.js"),
     hooker = require("hooker");
 
 exports = module.exports = (function () {
@@ -20,7 +21,7 @@ exports = module.exports = (function () {
 
     var useColor = function (chosenColor) {
         writeLn = function (msg, intensity) {
-            write(color[chosenColor](msg, intensity) + "\n");
+            write(color[chosenColor](msg, (intensity === true)) + "\n");
         };
     };
 
@@ -45,11 +46,7 @@ exports = module.exports = (function () {
     };
 
     var logDeferred = function () {
-        var msg;
-        for (var i = 0; i < deferredMessages.length; i++) {
-            msg = deferredMessages[i];
-            writeLn(msg);
-        }
+        λ.each(writeLn, deferredMessages);
     };
 
     var addToTotal = function (ms) {
