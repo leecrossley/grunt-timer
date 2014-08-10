@@ -1,6 +1,6 @@
 var duration = require("duration"),
     color = require("bash-color"),
-    λ = require("functional.js"),
+    fjs = require("functional.js"),
     hooker = require("hooker");
 
 exports = module.exports = (function () {
@@ -46,7 +46,7 @@ exports = module.exports = (function () {
     };
 
     var logDeferred = function () {
-        λ.each(writeLn, deferredMessages);
+        fjs.each(writeLn, deferredMessages);
     };
 
     var addToTotal = function (ms) {
