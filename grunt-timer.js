@@ -10,6 +10,7 @@ exports = module.exports = (function () {
         deferLogs = false,
         totalOnly = false,
         friendlyTime = false,
+        ignoreDefault = false,
         deferredMessages = [],
         options = {};
 
@@ -82,6 +83,11 @@ exports = module.exports = (function () {
         deferLogs = !! options.deferLogs;
         friendlyTime = !! options.friendlyTime;
         totalOnly = !! options.totalOnly;
+        ignoreDefault = !! options.ignoreDefault;
+
+        if (ignoreDefault && grunt.cli.tasks.length === 0) {
+            return;
+        }
 
         options.color = options.color || "purple";
         if (grunt.option("color") !== false) {

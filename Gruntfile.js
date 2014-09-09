@@ -1,6 +1,6 @@
 var timer = require("./grunt-timer.js");
 module.exports = function (grunt) {
-    timer.init(grunt, {deferLogs: false, friendlyTime: true, color: "yellow"});
+    timer.init(grunt, {deferLogs: false, friendlyTime: true, color: "yellow", ignoreDefault: true});
     grunt.initConfig({
         pkg: grunt.file.readJSON("package.json"),
         jshint: {
@@ -19,5 +19,6 @@ module.exports = function (grunt) {
         }, parseInt(ms, 10));
     });
     grunt.loadNpmTasks("grunt-contrib-jshint");
+    grunt.registerTask("default", ["run:100", "run:200"]);
     grunt.registerTask("test", ["run:100", "run:500", "run:1000"]);
 };
