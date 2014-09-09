@@ -39,7 +39,7 @@ To use any option, pass an object parameter to your initialise function like so:
 
 ```
 module.exports = function (grunt) {
-    timer.init(grunt, {deferLogs: true, friendlyTime: true, color: "blue"});
+    timer.init(grunt, { deferLogs: true, friendlyTime: true, color: "blue" });
 
 ```
 
@@ -73,6 +73,16 @@ All tasks took 502ms
 If supplied, will override default purple for console output.
 
 No color will be output if the grunt `--no-color` option is specified.
+
+### ignoreAlias
+
+Array of task aliases to ignore. e.g to stop grunt-timer running with the default task:
+
+```
+module.exports = function (grunt) {
+    timer.init(grunt, { ignoreAlias: ["default"] });
+
+```
 
 ## Notes
 
