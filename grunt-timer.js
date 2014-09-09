@@ -10,7 +10,7 @@ exports = module.exports = (function () {
         deferLogs = false,
         totalOnly = false,
         friendlyTime = false,
-        ignoreDefault = false,
+        ignoreAlias = [],
         deferredMessages = [],
         options = {};
 
@@ -39,6 +39,17 @@ exports = module.exports = (function () {
             }
             addToTotal(dur);
         }
+    };
+
+    var isIgnoredAlias = function () {
+        var cliTasks = grunt.cli.tasks.length > 0 ?
+            grunt.cli.tasks : ["default"];
+
+        var intersect = fjs.select(function (t) {
+            return cliTasks.indexOf(t) !== -1;
+        }, ignoreAlias);
+
+        return intersect.length > 0;
     };
 
     var logTotal = function () {
@@ -83,9 +94,9 @@ exports = module.exports = (function () {
         deferLogs = !! options.deferLogs;
         friendlyTime = !! options.friendlyTime;
         totalOnly = !! options.totalOnly;
-        ignoreDefault = !! options.ignoreDefault;
+        ignoreAlias = options.ignoreAlias || [];
 
-        if (ignoreDefault && grunt.cli.tasks.length === 0) {
+        if (isIgnoredAlias()) {
             return;
         }
 
