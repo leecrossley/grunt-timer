@@ -8,6 +8,7 @@ exports = module.exports = (function () {
     var timer = {}, grunt, last, task,
         total = 0,
         deferLogs = false,
+        deferLogsAndWriteInLine = false,
         totalOnly = false,
         friendlyTime = false,
         ignoreAlias = [],
@@ -31,7 +32,11 @@ exports = module.exports = (function () {
         if (dur > 2) {
             var logMsg = "Task '" + task + "' took " + getDisplayTime(dur);
             if (!totalOnly) {
-                if (deferLogs) {
+                if (deferLogsAndWriteInLine) {
+                    deferredMessages.push(logMsg);
+                    writeLn(logMsg);
+                }
+                else if (deferLogs) {
                     deferredMessages.push(logMsg);
                 } else {
                     writeLn(logMsg);
@@ -92,6 +97,7 @@ exports = module.exports = (function () {
         options = _options || {};
 
         deferLogs = !! options.deferLogs;
+        deferLogsAndWriteInLine = !! options.deferLogsAndWriteInLine;
         friendlyTime = !! options.friendlyTime;
         totalOnly = !! options.totalOnly;
         ignoreAlias = options.ignoreAlias || [];
