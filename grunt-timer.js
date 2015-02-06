@@ -126,7 +126,7 @@ exports = module.exports = (function () {
 
         process.on("exit", function () {
             logCurrent();
-            if (deferLogs) {
+            if (deferLogs || deferLogsAndWriteInLine) {
                 logDeferred();
             }
             logTotal();
