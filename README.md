@@ -50,6 +50,12 @@ If you'd prefer to see a summary of all your task timings at the end of the grun
 This is useful for the case where you have many grunt tasks, or they generate a lot of output while they are running,
 and it might be tedious to scroll back through the console to find all the timing messages.
 
+### deferLogsAndWriteInLine
+
+Behaves like `deferLogs` but will also do the default inline logging.
+
+This is useful if you want the summary (deferLogs) but a build could timeout, which would means there could be no grunt timer logs.
+
 ### friendlyTime
 
 Enable this if you'd prefer to see the durations reported in a friendly hours/minutes/seconds format, instead of ms.
