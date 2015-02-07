@@ -1,7 +1,7 @@
 var timer = require("./grunt-timer.js");
 module.exports = function (grunt) {
     timer.init(grunt, {
-        deferLogs: false,
+        deferLogsAndWriteInLine: true,
         friendlyTime: true,
         color: "yellow",
         ignoreAlias: ["default", "testignore"]
